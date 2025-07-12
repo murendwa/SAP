@@ -14,7 +14,7 @@ CLASS ztask3_exercise DEFINITION
 
   interfaces if_oo_adt_classrun.
 
-  CLASS-METHODS: left_join EXPORTING out type tt_ztable , right_join EXPORTING right_out type tt_ztable.
+  CLASS-METHODS: left_join EXPORTING out type tt_ztable , right_join EXPORTING right_out type tt_ztable , INNER_join EXPORTING INNER_out type tt_ztable.
 
   PROTECTED SECTION.
   PRIVATE SECTION.
@@ -58,8 +58,9 @@ CLASS ztask3_exercise IMPLEMENTATION.
 
  "ZTASK3_EXERCISE=>left_join( IMPORTING OUT = LT_OUT ). "Prints out left join table
 
+ "ZTASK3_EXERCISE=>right_join( IMPORTING RIGHT_OUT = LT_OUT ).
 
- ZTASK3_EXERCISE=>right_join( IMPORTING RIGHT_OUT = LT_OUT ).
+ ZTASK3_EXERCISE=>inner_join( IMPORTING INNER_OUT = LT_OUT ).
 
  out->write( lt_out ).
 
@@ -74,7 +75,7 @@ CLASS ztask3_exercise IMPLEMENTATION.
   INTO TABLE @DATA(Output_table).
 
   out = Output_table.
-  "Doesn't show values for Peter because the client ids don't match but still shows the name because it's a left join
+  "Doesn't show values for Peter because the client ids don't match but still shows the name because name is in left table
 
   ENDMETHOD.
 
@@ -87,7 +88,19 @@ CLASS ztask3_exercise IMPLEMENTATION.
   INTO TABLE @DATA(Output_table).
 
   right_out = Output_table.
+  "Doesn't show values for Peter because the client ids don't match but still shows the account_number because account_number is in right table
 
+  ENDMETHOD.
+
+  METHOD INNER_join.
+
+  SELECT name , account_number
+  FROM ZCLIENTDETAILS
+  INNER JOIN ZACCOUNTDETAILS
+  ON ZCLIENTDETAILS~client_id = ZACCOUNTDETAILS~client_id
+  INTO TABLE @DATA(Output_table).
+
+  Inner_out = Output_table.
 
   ENDMETHOD.
 
