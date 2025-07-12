@@ -8,13 +8,10 @@ CREATE PUBLIC .
 
 PUBLIC SECTION.
 
-TYPES:BEGIN OF ztable,
-
-name type zbankdetails,
-
-city type zaccounts_000,
-
-end of ZTABLE.
+    TYPES:BEGIN OF ztable,
+        name type ZBANKDETAILS-NAME, " <--- Change made here
+        city type ZACCOUNTS_000-CITY, " <--- Change made here
+    end of ZTABLE.
 
 data: lt_out type table of ztable.
 types: tt_ztable type table of ztable.
@@ -22,7 +19,7 @@ types: tt_ztable type table of ztable.
 
 interfaces if_oo_adt_classrun.
 
-CLASS-METHODS:Left_join exporting out type ANY TABLE .
+CLASS-METHODS:Left_join exporting out type tt_ztable .
 
 
 
