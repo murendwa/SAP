@@ -13,7 +13,8 @@ CLASS ztask3_exercise DEFINITION
   types: tt_ztable type table of ztable.
 
   interfaces if_oo_adt_classrun.
-  CLASS-METHODS: left_join EXPORTING out type tt_ztable.
+
+  CLASS-METHODS: left_join EXPORTING out type tt_ztable , right_join EXPORTING right_out type tt_ztable.
 
   PROTECTED SECTION.
   PRIVATE SECTION.
@@ -55,10 +56,12 @@ CLASS ztask3_exercise IMPLEMENTATION.
  INSERT ZACCOUNTDETAILS FROM TABLE @LT_ACCOUNTS2.
  out->write( |Inserted { sy-dbcnt } records into ZACCOUNTDETAILS.| ).
 
- ZTASK3_EXERCISE=>left_join( IMPORTING OUT = LT_OUT ).
+ "ZTASK3_EXERCISE=>left_join( IMPORTING OUT = LT_OUT ). "Prints out left join table
+
+
+ ZTASK3_EXERCISE=>right_join( IMPORTING RIGHT_OUT = LT_OUT ).
 
  out->write( lt_out ).
-
 
   ENDMETHOD.
 
@@ -71,6 +74,19 @@ CLASS ztask3_exercise IMPLEMENTATION.
   INTO TABLE @DATA(Output_table).
 
   out = Output_table.
+  "Doesn't show values for Peter because the client ids don't match but still shows the name because it's a left join
+
+  ENDMETHOD.
+
+  METHOD right_join.
+
+  SELECT name , account_number
+  FROM ZCLIENTDETAILS
+  RIGHT JOIN ZACCOUNTDETAILS
+  ON ZCLIENTDETAILS~client_id = ZACCOUNTDETAILS~client_id
+  INTO TABLE @DATA(Output_table).
+
+  right_out = Output_table.
 
 
   ENDMETHOD.
