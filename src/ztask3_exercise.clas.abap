@@ -16,6 +16,7 @@ CLASS ztask3_exercise DEFINITION
 
   CLASS-METHODS: left_join EXPORTING out type tt_ztable , right_join EXPORTING right_out type tt_ztable , INNER_join EXPORTING INNER_out type tt_ztable.
 
+
   PROTECTED SECTION.
   PRIVATE SECTION.
 ENDCLASS.
@@ -64,6 +65,14 @@ CLASS ztask3_exercise IMPLEMENTATION.
 
  out->write( lt_out ).
 
+ " Withdraw method.
+
+    DATA(lv_target_customer_id) = '1004'.
+
+    READ TABLE lt_accounts2 INTO DATA(ls_account_entry) WITH KEY client_id = lv_target_customer_id.
+
+          out->write( |Account number for customer { lv_target_customer_id }: { ls_account_entry-account_number }| ).
+
   ENDMETHOD.
 
   METHOD left_join.
@@ -101,7 +110,10 @@ CLASS ztask3_exercise IMPLEMENTATION.
   INTO TABLE @DATA(Output_table).
 
   Inner_out = Output_table.
+  "Doesn't show values from both tables that don't match, only shows values that match.
 
   ENDMETHOD.
+
+
 
 ENDCLASS.
