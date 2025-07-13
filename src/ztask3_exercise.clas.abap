@@ -39,9 +39,9 @@ CLASS ztask3_exercise IMPLEMENTATION.
 
  LT_ACCOUNTS2 = VALUE #(
 
-( client = '100' account_number = '10101010' client_id = '1001' )
-( client = '100' account_number = '20202020' client_id = '1002' )
-( client = '100' account_number = '30303030' client_id = '1004' )
+( client = '100' account_number = '10101010' client_id = '1001' account_balance = '100' )
+( client = '100' account_number = '20202020' client_id = '1002' account_balance = '150'  )
+( client = '100' account_number = '30303030' client_id = '1004' account_balance = '200' )
 
 ).
 
@@ -65,13 +65,28 @@ CLASS ztask3_exercise IMPLEMENTATION.
 
  out->write( lt_out ).
 
- " Withdraw method.
+ " view Balance method.
 
-    DATA(lv_target_customer_id) = '1004'.
+   DATA(lv_target_customer_id) = '1004'.
 
-    READ TABLE lt_accounts2 INTO DATA(ls_account_entry) WITH KEY client_id = lv_target_customer_id.
+   READ TABLE lt_accounts2 INTO DATA(ls_account_entry) WITH KEY client_id = lv_target_customer_id.
 
           out->write( |Account number for customer { lv_target_customer_id }: { ls_account_entry-account_number }| ).
+
+  "Withdrawal Method
+
+  DATA(lv_withdrawal_amount) = '20'.
+  READ TABLE lt_accounts2 INTO DATA(ls_withdrawal_account) WITH KEY client_id = lv_target_customer_id.
+  out->write( |Amount withdrawn is : { lv_withdrawal_amount } , remaining balance is { ls_withdrawal_account-account_balance - lv_withdrawal_amount }| ).
+
+  "Deposit Method
+
+  DATA(lv_Deposit_amount) = '40'.
+  DATA(lv_Deposit_customer_id) = '1002'.
+
+  READ TABLE lt_accounts2 INTO DATA(ls_Deposit_amount) WITH KEY client_id = lv_Deposit_customer_id.
+  out->write( |Amount Deposited is : { lv_Deposit_amount } , updated balance is { ls_Deposit_amount-account_balance + lv_Deposit_amount }| ).
+
 
   ENDMETHOD.
 
