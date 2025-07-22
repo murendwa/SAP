@@ -10,6 +10,11 @@ CLASS zmat_bankapplication DEFINITION
       gv_deposit_client_id TYPE char05
       gv_deposit_updated_balance TYPE INT4 .
 
+  CLASS-METHODS: WITHDRAW EXPORTING
+    gv_withdraw_money TYPE INT4
+    gv_withdraw_client_id TYPE char05
+    gv_withdraw_updated_balance TYPE INT4 .
+
   CLASS-DATA: gt_accounts TYPE TABLE OF ZMAT_CLIENT , gt_accounts2 TYPE TABLE OF ZMAT_ACCOUNT .
 
   PROTECTED SECTION.
@@ -23,7 +28,8 @@ CLASS zmat_bankapplication IMPLEMENTATION.
 
   METHOD if_oo_adt_classrun~main.
 
-  DATA : deposit_money_in type int4 , deposit_client_id type char05 , deposit_account type int4 , deposit_balance type int4 .
+  DATA : deposit_money_in type int4 , deposit_client_id type char05 , deposit_account type int4 , deposit_balance type int4 ,
+  withdraw_money_out type int4 , withdraw_client_id type char05 , withdraw_account type int4 , withdraw_balance type int4 .
 
     gt_accounts = VALUE #(
 
@@ -57,6 +63,16 @@ CLASS zmat_bankapplication IMPLEMENTATION.
    WHERE CLIENT_ID = @deposit_client_id.
    out->write( deposit_client_id ).
 
+   zmat_bankapplication=>withdraw( IMPORTING
+   gv_withdraw_money = withdraw_money_out
+   gv_withdraw_client_id = withdraw_client_id
+   gv_withdraw_updated_balance = withdraw_balance
+    ).
+   UPDATE ZMAT_ACCOUNT SET account_balance = @withdraw_balance
+   WHERE CLIENT_ID = @withdraw_client_id.
+   out->write( withdraw_client_id ).
+
+
   ENDMETHOD.
 
   METHOD deposit.
@@ -69,5 +85,16 @@ CLASS zmat_bankapplication IMPLEMENTATION.
 
 
   ENDMETHOD.
+
+  METHOD withdraw.
+
+  gv_withdraw_money = '20'.
+  gv_withdraw_client_id = '1004'.
+
+  READ TABLE gt_accounts2 INTO DATA(ls_withdraw_money) WITH KEY CLIENT_ID = gv_withdraw_client_id.
+  gv_withdraw_updated_balance = ls_withdraw_money-account_balance - gv_withdraw_money.
+
+  ENDMETHOD.
+
 
 ENDCLASS.
