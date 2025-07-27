@@ -1,0 +1,100 @@
+@Metadata.layer: #CORE
+@UI.headerInfo.title.type: #STANDARD
+@UI.headerInfo.title.value: 'ClientId'
+@UI.headerInfo.description.type: #STANDARD
+@UI.headerInfo.description.value: 'ClientId'
+annotate view ZC_MAT_CLIENT with
+{
+  @EndUserText.label: 'ClientId'
+  @UI.facet: [ {
+    label: 'General Information', 
+    id: 'GeneralInfo', 
+    purpose: #STANDARD, 
+    position: 10 , 
+    type: #IDENTIFICATION_REFERENCE
+  } ]
+  @UI.identification: [ {
+    position: 10 , 
+    label: 'ClientId'
+  } ]
+  @UI.lineItem: [ {
+    position: 10 , 
+    label: 'ClientId'
+  } ]
+  @UI.selectionField: [ {
+    position: 10 
+  } ]
+  ClientId;
+  
+  @EndUserText.label: 'Name'
+  @UI.identification: [ {
+    position: 20 , 
+    label: 'Name'
+  } ]
+  @UI.lineItem: [ {
+    position: 20 , 
+    label: 'Name'
+  } ]
+  @UI.selectionField: [ {
+    position: 20 
+  } ]
+  Name;
+  
+  @EndUserText.label: 'Surname'
+  @UI.identification: [ {
+    position: 30 , 
+    label: 'Surname'
+  } ]
+  @UI.lineItem: [ {
+    position: 30 , 
+    label: 'Surname'
+  } ]
+  @UI.selectionField: [ {
+    position: 30 
+  } ]
+  Surname;
+  
+  @UI.identification: [ {
+    position: 40 
+  } ]
+  @UI.lineItem: [ {
+    position: 40 
+  } ]
+  @UI.selectionField: [ {
+    position: 40 
+  } ]
+  LocalLastChanged;
+  
+  @UI.identification: [ {
+    position: 50 
+  } ]
+  @UI.lineItem: [ {
+    position: 50 
+  } ]
+  @UI.selectionField: [ {
+    position: 50 
+  } ]
+  LastChanged;
+  
+  @UI.identification: [ {
+    position: 60 
+  } ]
+  @UI.lineItem: [ {
+    position: 60 
+  } ]
+  @UI.selectionField: [ {
+    position: 60 
+  } ]
+  Createdby;
+  
+  @UI.identification: [ {
+    position: 70 
+  } ]
+  @UI.lineItem: [ {
+    position: 70 
+  } ]
+  @UI.selectionField: [ {
+    position: 70 
+  } ]
+  Changedby;
+}

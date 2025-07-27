@@ -27,6 +27,7 @@ CLASS zleftjoin IMPLEMENTATION.
 
   GET TIME STAMP FIELD DATA(zv_tsl).
 
+
 lt_accounts = VALUE #(
         ( client = '100' name = 'murendwa' surname = 'matumba' account_id = '15' )
 
@@ -48,7 +49,7 @@ INSERT ZRIGHTMAINTABLE from table @lt_accounts2.
 
 "Check result in console
 out->write( sy-dbcnt ).
-out->write(  'DONE!' ).
+out->write(  'stolen code' ).
 out->write( out ).
 
 

@@ -1,0 +1,48 @@
+managed implementation in class ZBP_R_MAT_CLIENT unique;
+strict ( 2 );
+with draft;
+extensible;
+define behavior for ZR_MAT_CLIENT alias ZrMatClient
+persistent table ZMAT_CLIENT
+extensible
+draft table ZMAT_CLIENT_D
+etag master LocalLastChanged
+lock master total etag LastChanged
+authorization master( global )
+
+{
+  field ( mandatory : create )
+   ClientId;
+
+  field ( readonly )
+   LocalLastChanged,
+   LastChanged,
+   Createdby,
+   Changedby;
+
+  field ( readonly : update )
+   ClientId;
+
+
+  create;
+  update;
+  delete;
+
+  draft action Activate optimized;
+  draft action Discard;
+  draft action Edit;
+  draft action Resume;
+  draft determine action Prepare;
+
+  mapping for ZMAT_CLIENT corresponding extensible
+  {
+    ClientId = client_id;
+    Name = name;
+    Surname = surname;
+    LocalLastChanged = local_last_changed;
+    LastChanged = last_changed;
+    Createdby = createdby;
+    Changedby = changedby;
+  }
+
+}

@@ -1,0 +1,11 @@
+@EndUserText: {
+  label: 'Service Definition for ZC_MAT_CLIENT'
+}
+@ObjectModel: {
+  leadingEntity: {
+    name: 'ZC_MAT_CLIENT'
+  }
+}
+define service ZUI_MAT_CLIENT_O4 provider contracts odata_v4_ui {
+  expose ZC_MAT_CLIENT;
+}
