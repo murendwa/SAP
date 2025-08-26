@@ -31,11 +31,7 @@ ENDCLASS.
 
 
 
-
-
-CLASS zcl_fill_accounts_mat IMPLEMENTATION.
-
-
+CLASS ZCL_FILL_ACCOUNTS_MAT IMPLEMENTATION.
 
 
 METHOD if_oo_adt_classrun~main.
@@ -139,7 +135,6 @@ out->write( lt_out ).
 ENDMETHOD.
 
 
-
 METHOD left_join.
 
 
@@ -157,7 +152,4 @@ out = Output_table.
 
 
 ENDMETHOD.
-
-
-
 ENDCLASS.

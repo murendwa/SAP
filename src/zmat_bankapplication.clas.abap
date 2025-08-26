@@ -23,7 +23,19 @@ ENDCLASS.
 
 
 
-CLASS zmat_bankapplication IMPLEMENTATION.
+CLASS ZMAT_BANKAPPLICATION IMPLEMENTATION.
+
+
+  METHOD deposit.
+
+  gv_deposited_money = '300'.
+  gv_deposit_client_id = '1002'.
+
+  READ TABLE gt_accounts2 INTO DATA(ls_deposit_money) WITH KEY CLIENT_ID = gv_deposit_client_id.
+    gv_deposit_updated_balance = ls_deposit_money-account_balance + gv_deposited_money.
+
+
+  ENDMETHOD.
 
 
   METHOD if_oo_adt_classrun~main.
@@ -75,16 +87,6 @@ CLASS zmat_bankapplication IMPLEMENTATION.
 
   ENDMETHOD.
 
-  METHOD deposit.
-
-  gv_deposited_money = '300'.
-  gv_deposit_client_id = '1002'.
-
-  READ TABLE gt_accounts2 INTO DATA(ls_deposit_money) WITH KEY CLIENT_ID = gv_deposit_client_id.
-    gv_deposit_updated_balance = ls_deposit_money-account_balance + gv_deposited_money.
-
-
-  ENDMETHOD.
 
   METHOD withdraw.
 
@@ -95,6 +97,4 @@ CLASS zmat_bankapplication IMPLEMENTATION.
   gv_withdraw_updated_balance = ls_withdraw_money-account_balance - gv_withdraw_money.
 
   ENDMETHOD.
-
-
 ENDCLASS.

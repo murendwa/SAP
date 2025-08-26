@@ -25,7 +25,22 @@ ENDCLASS.
 
 
 
-CLASS zcar_instance IMPLEMENTATION.
+CLASS ZCAR_INSTANCE IMPLEMENTATION.
+
+
+  METHOD accelerate.
+
+me->mv_speed = me->mv_speed + iv_speed_increase.
+  ENDMETHOD.
+
+
+  METHOD get_info.
+
+rv_car_info = |This is a { me->mv_color } car, currently at { me->mv_speed } km/h.|.
+
+  ENDMETHOD.
+
+
   METHOD if_oo_adt_classrun~main.
 
   DATA : lo_blue_car TYPE REF TO zcar_instance , lo_red_car TYPE REF TO zcar_instance.
@@ -44,21 +59,10 @@ CLASS zcar_instance IMPLEMENTATION.
 
   ENDMETHOD.
 
-  METHOD accelerate.
-
-me->mv_speed = me->mv_speed + iv_speed_increase.
-  ENDMETHOD.
-
-  METHOD get_info.
-
-rv_car_info = |This is a { me->mv_color } car, currently at { me->mv_speed } km/h.|.
-
-  ENDMETHOD.
 
   METHOD set_color.
 
 me->mv_color = iv_new_color.
 
   ENDMETHOD.
-
 ENDCLASS.

@@ -37,8 +37,7 @@ ENDCLASS.
 
 
 
-CLASS ztask3_exercise IMPLEMENTATION.
-
+CLASS ZTASK3_EXERCISE IMPLEMENTATION.
 
 
   METHOD if_oo_adt_classrun~main.
@@ -120,6 +119,35 @@ CLASS ztask3_exercise IMPLEMENTATION.
   ENDMETHOD.
 
 
+  METHOD INNER_join.
+
+    SELECT name , account_number
+    FROM zclientdetails
+    INNER JOIN zaccountdetails
+    ON zclientdetails~client_id = zaccountdetails~client_id
+    INTO TABLE @DATA(Output_table).
+
+    Inner_out = Output_table.
+    "Doesn't show values from both tables that don't match, only shows values that match.
+
+  ENDMETHOD.
+
+
+  METHOD instance_method.
+
+  "Accessed through object
+
+    DATA : lv_input3 TYPE int4, lv_input4 TYPE int4.
+
+    lv_input3 = '4'.
+    lv_input4 = '4'.
+
+    rv_instance_method_output = lv_input3 + lv_input4.
+
+
+  ENDMETHOD.
+
+
   METHOD left_join.
 
     SELECT name , account_number
@@ -148,21 +176,6 @@ CLASS ztask3_exercise IMPLEMENTATION.
   ENDMETHOD.
 
 
-  METHOD INNER_join.
-
-    SELECT name , account_number
-    FROM zclientdetails
-    INNER JOIN zaccountdetails
-    ON zclientdetails~client_id = zaccountdetails~client_id
-    INTO TABLE @DATA(Output_table).
-
-    Inner_out = Output_table.
-    "Doesn't show values from both tables that don't match, only shows values that match.
-
-  ENDMETHOD.
-
-
-
   METHOD static_method.
     "Example of static method. Accessed using class name.
 
@@ -175,24 +188,4 @@ CLASS ztask3_exercise IMPLEMENTATION.
 
 
   ENDMETHOD.
-
-
-
-  METHOD instance_method.
-
-  "Accessed through object
-
-    DATA : lv_input3 TYPE int4, lv_input4 TYPE int4.
-
-    lv_input3 = '4'.
-    lv_input4 = '4'.
-
-    rv_instance_method_output = lv_input3 + lv_input4.
-
-
-  ENDMETHOD.
-
-
-
-
 ENDCLASS.

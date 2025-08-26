@@ -19,7 +19,9 @@ ENDCLASS.
 
 
 
-CLASS zleftjoin IMPLEMENTATION.
+CLASS ZLEFTJOIN IMPLEMENTATION.
+
+
   METHOD if_oo_adt_classrun~main.
 
   DATA: lt_accounts type table of ZLEFTMAINTABLE ,
@@ -55,6 +57,7 @@ out->write( out ).
 
   ENDMETHOD.
 
+
   METHOD left_join.
   SELECT name,account_number
   FROM ZLEFTMAINTABLE
@@ -65,5 +68,4 @@ out->write( out ).
 
 
   ENDMETHOD.
-
 ENDCLASS.
