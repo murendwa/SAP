@@ -1,0 +1,4 @@
+@EndUserText.label: 'September Client Details'
+define service ZUI_MAT_Sep_Client {
+  expose zcds_sep_client;
+}

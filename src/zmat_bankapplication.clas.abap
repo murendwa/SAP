@@ -15,7 +15,11 @@ CLASS zmat_bankapplication DEFINITION
     gv_withdraw_client_id TYPE char05
     gv_withdraw_updated_balance TYPE INT4 .
 
-  CLASS-DATA: gt_accounts TYPE TABLE OF ZMAT_CLIENT , gt_accounts2 TYPE TABLE OF ZMAT_ACCOUNT .
+  CLASS-DATA: gt_accounts TYPE TABLE OF ZMAT_CLIENT , gt_accounts2 TYPE TABLE OF ZMAT_ACCOUNT
+  , gt_accounts3 TYPE TABLE OF ZCLIENTSEPT_INFO , gt_accounts4 TYPE TABLE OF ZCLIENTSEPT_DET .
+
+    Class-METHODS:Inner_Join EXPORTING out type ANY TABLE.
+
 
   PROTECTED SECTION.
   PRIVATE SECTION.
@@ -59,11 +63,35 @@ CLASS ZMAT_BANKAPPLICATION IMPLEMENTATION.
 
    ).
 
+   gt_accounts3 = VALUE #(
+
+  ( client = '100' name = 'John' surname = 'Doe' client_id = '1001' )
+  ( client = '100' name = 'Tim' surname = 'Black' client_id = '1002' )
+  ( client = '100' name = 'Peter' surname = 'Lacey' client_id = '1003' )
+
+  ).
+
+  gt_accounts4 = VALUE #(
+
+   ( client = '100' bank_name = 'Capitec' bank_account = '100' client_id = '1001' )
+   ( client = '100' bank_name = 'ABSA' bank_account = '150' client_id = '1002' )
+   ( client = '100' bank_name = 'FNB' bank_account = '200' client_id = '1003' )
+
+   ).
+
+
+
    DELETE FROM ZMAT_CLIENT.
    DELETE FROM ZMAT_ACCOUNT.
 
+   DELETE FROM ZCLIENTSEPT_INFO.
+   DELETE FROM ZCLIENTSEPT_DET.
+
    INSERT ZMAT_CLIENT FROM TABLE @gt_accounts.
    INSERT ZMAT_ACCOUNT FROM TABLE @gt_accounts2.
+
+   INSERT ZCLIENTSEPT_INFO FROM TABLE @gt_accounts3.
+   INSERT ZCLIENTSEPT_DET FROM TABLE @gt_accounts4.
 
 
    zmat_bankapplication=>deposit( IMPORTING
@@ -97,4 +125,17 @@ CLASS ZMAT_BANKAPPLICATION IMPLEMENTATION.
   gv_withdraw_updated_balance = ls_withdraw_money-account_balance - gv_withdraw_money.
 
   ENDMETHOD.
+
+
+  METHOD INNER_JOIN.
+
+  SELECT name,bank_account
+  FROM ZCLIENTSEPT_INFO
+  LEFT JOIN ZCLIENTSEPT_DET
+  ON ZCLIENTSEPT_INFO~client_id = ZCLIENTSEPT_DET~client_id
+  INTO TABLE @DATA(Output_table).
+  out = Output_table.
+
+  ENDMETHOD.
+
 ENDCLASS.
