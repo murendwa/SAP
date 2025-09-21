@@ -41,14 +41,15 @@ define view zcds_sep_client as select from zclientsept_info
     zclientsept_info.gender as Gender,
     
     // 'https://www.sap.com' as custoUrl,
-     
+    // 'https://www.google.com/search?&q=cat' as custoUrl
+     concat(concat('https://www.google.com/search?q=', zclientsept_info.name), zclientsept_info.surname) as custoUrl
      // New field to conditionally generate the URL
-    case zclientsept_info.surname
-        when 'Doe' then 'https://www.sap.com'
-        when 'Black' then 'https://www.pexels.com'
-        when 'Lacey' then 'https://chatgpt.com/'
-        else 'https://www.google.com' // or null
-    end as custoUrl
+    //case zclientsept_info.surname
+        //when 'Doe' then 'https://www.sap.com'
+       // when 'Black' then 'https://www.pexels.com'
+       // when 'Lacey' then 'https://chatgpt.com/'
+       // else 'https://www.google.com' // or null
+    //end as custoUrl
     
     
 }
