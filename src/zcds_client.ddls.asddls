@@ -1,6 +1,6 @@
 @AbapCatalog.sqlViewName: 'ZCDSVIEW_CLIENT'
 @AbapCatalog.compiler.compareFilter: true
-@AbapCatalog.preserveKey: true
+
 @AccessControl.authorizationCheck: #NOT_REQUIRED
 @EndUserText.label: 'client view'
 @Metadata.ignorePropagatedAnnotations: true
