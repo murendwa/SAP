@@ -1,0 +1,5 @@
+CLASS zbp_cds_sep_client DEFINITION PUBLIC ABSTRACT FINAL FOR BEHAVIOR OF zcds_sep_client.
+ENDCLASS.
+
+CLASS zbp_cds_sep_client IMPLEMENTATION.
+ENDCLASS.

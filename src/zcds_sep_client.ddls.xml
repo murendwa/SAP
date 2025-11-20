@@ -6,7 +6,7 @@
     <DDLNAME>ZCDS_SEP_CLIENT</DDLNAME>
     <DDLANGUAGE>E</DDLANGUAGE>
     <DDTEXT>zcds view september client details</DDTEXT>
-    <SOURCE_TYPE>V</SOURCE_TYPE>
+    <SOURCE_TYPE>W</SOURCE_TYPE>
    </DDLS>
   </asx:values>
  </asx:abap>

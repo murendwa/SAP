@@ -1,12 +1,11 @@
-@AbapCatalog.sqlViewName: 'ZCDS_SEPTEMBER'
-@AbapCatalog.compiler.compareFilter: true
+
 
 @AccessControl.authorizationCheck: #NOT_REQUIRED
 @EndUserText.label: 'zcds view september client details'
 @Metadata.ignorePropagatedAnnotations: true
 
 @UI.headerInfo : {typeName: 'Client' , typeNamePlural: 'Clients' , typeImageUrl: 'https://cdn.britannica.com/27/4227-050-00DBD10A/Flag-South-Africa.jpg'}
-define view zcds_sep_client as select from zclientsept_info
+define root view entity zcds_sep_client as select from zclientsept_info
                                     inner join zclientsept_det on zclientsept_info.client_id = zclientsept_det.client_id
 {
 
@@ -17,9 +16,14 @@ define view zcds_sep_client as select from zclientsept_info
     @UI.lineItem: [{ position : 60 }]
     
     key zclientsept_info.client_id as ClientId,
-    @UI.lineItem: [{ position : 10 }]
+    @UI.lineItem: [{ position : 10 },
+    { type : #FOR_ACTION, position : 10, label : 'Make Booking', dataAction : 'Update_Bank'}]
     @UI.fieldGroup: [{ qualifier: 'Main' ,position: 10 , label: 'Name'}]
     zclientsept_info.name as Name,
+    
+    @UI.lineItem: [{ position : 50 } ]
+    @UI.fieldGroup: [{ qualifier: 'Main' ,position: 10 , label: 'Booking Status'}]
+    zclientsept_det.booking_status as Booking_Status,
     
     @UI.lineItem: [{ position : 20 , type : #WITH_URL , url : 'custoUrl'  }]
    // @UI.lineItem.iconUrl: 'iconurl'
@@ -34,7 +38,12 @@ define view zcds_sep_client as select from zclientsept_info
     @UI.fieldGroup: [{ qualifier: 'Details' ,position: 10 , label: 'Bank Name'}]
     @UI.lineItem: [{ position : 40 }]
     zclientsept_det.bank_name as Bank_Name,
-    @UI.lineItem: [{ position : 50 }]
+    
+    
+    
+   
+    
+    @UI.lineItem: [{ position : 60 }]
     
     zclientsept_det.type as Type,
     

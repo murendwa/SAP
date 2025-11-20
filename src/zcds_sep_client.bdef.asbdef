@@ -1,0 +1,15 @@
+managed implementation in class zbp_cds_sep_client unique;
+strict ( 2 );
+
+define behavior for zcds_sep_client //alias <alias_name>
+persistent table zclientsept_det
+lock master
+authorization master ( instance )
+//etag master <field_name>
+{
+  create ( authorization : global );
+  update;
+  delete;
+  //field ( numbering : managed, readonly) ClientId;
+  action Update_Bank result [1] $self;
+}
