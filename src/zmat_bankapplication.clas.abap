@@ -49,9 +49,9 @@ CLASS ZMAT_BANKAPPLICATION IMPLEMENTATION.
 
     gt_accounts = VALUE #(
 
-  ( client = '100' name = 'John' surname = 'Doe' client_id = '1001' )
-  ( client = '100' name = 'Tim' surname = 'Black' client_id = '1002' )
-  ( client = '100' name = 'Peter' surname = 'Lacey' client_id = '1003' )
+  ( client = '100' name = 'Tond' surname = 'Matei' client_id = '1001' )
+  ( client = '100' name = 'mpho' surname = 'Black' client_id = '1002' )
+  ( client = '100' name = 'khathu' surname = 'Lacey' client_id = '1003' )
 
   ).
 
@@ -65,9 +65,9 @@ CLASS ZMAT_BANKAPPLICATION IMPLEMENTATION.
 
    gt_accounts3 = VALUE #(
 
-  ( client = '100' name = 'John' surname = 'Doe' client_id = '1001' )
-  ( client = '100' name = 'Tim' surname = 'Black' client_id = '1002' )
-  ( client = '100' name = 'Peter' surname = 'Lacey' client_id = '1003' )
+  ( client = '100' name = 'Tond' surname = 'Matei' client_id = '1001' )
+  ( client = '100' name = 'mpho' surname = 'Black' client_id = '1002' )
+  ( client = '100' name = 'khathu' surname = 'Lacey' client_id = '1003' )
 
   ).
 

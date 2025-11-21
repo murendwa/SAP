@@ -1,0 +1,5 @@
+CLASS zbp_cds_nov_client DEFINITION PUBLIC ABSTRACT FINAL FOR BEHAVIOR OF zcds_nov_client.
+ENDCLASS.
+
+CLASS zbp_cds_nov_client IMPLEMENTATION.
+ENDCLASS.

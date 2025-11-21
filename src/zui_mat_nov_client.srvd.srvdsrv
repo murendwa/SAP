@@ -1,0 +1,4 @@
+@EndUserText.label: 'Nov'
+define service ZUI_MAT_Nov_Client {
+  expose zcds_Nov_client;
+}

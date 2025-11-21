@@ -1,0 +1,15 @@
+managed implementation in class zbp_cds_nov_client unique;
+//strict ( 2 ); //Uncomment this line in order to enable strict mode 2. The strict mode has two variants (strict(1), strict(2)) and is prerequisite to be future proof regarding syntax and to be able to release your BO.
+
+define behavior for zcds_Nov_client //alias <alias_name>
+persistent table zclientsept_det
+lock master
+authorization master ( none )
+//etag master <field_name>
+{
+  create ( authorization : none );
+  update;
+  delete;
+  field ( readonly ) client_id;
+  action Update_Bank result [1] $self;
+}
